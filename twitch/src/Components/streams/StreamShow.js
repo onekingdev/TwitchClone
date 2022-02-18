@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { fetchStream, editStream } from "../../actions";
+import { rtmp_server_url } from "../urls";
 import flv from "flv.js";
 const StreamShow = (props) => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const StreamShow = (props) => {
     let path = window.location.pathname;
     const player = flv.createPlayer({
       type: "flv",
-      url: `http://192.168.1.102:8001/live/${path[path.length - 1]}.flv`,
+      url: `${rtmp_server_url}${path[path.length - 1]}.flv`,
     });
     player.attachMediaElement(videoElement.current);
     player.load();
